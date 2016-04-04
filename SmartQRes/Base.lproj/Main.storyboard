@@ -3433,9 +3433,9 @@
         <image name="wheelchair.png" width="2000" height="2154"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ljN-6A-JnF"/>
         <segue reference="Lv5-oi-Ffl"/>
         <segue reference="m2K-my-1vl"/>
+        <segue reference="LQi-qq-HB5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.16078431369999999" green="0.42352941179999998" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

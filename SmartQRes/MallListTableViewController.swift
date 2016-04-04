@@ -51,8 +51,8 @@ class MallListTableViewController: UITableViewController {
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var row = indexPath.row
-        print("row = \(row)")
+       // var row = indexPath.row
+       // print("row = \(row)")
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
@@ -99,6 +99,7 @@ class MallListTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        print("prepareForSegue")
         let indexPath = self.tableView!.indexPathForSelectedRow!
         var shopping = shoppingMallList[indexPath.row] as ShoppingMall
         (segue.destinationViewController as! EditGeneralInfoViewController).selectMall = shopping.sho_name as String

@@ -13,10 +13,16 @@ struct MyVariables {
     static var password :String = "password"
     static var branchAdminUserType :Int = 2
     
-    var currentRunningTypeA : Int = 11
-    var currentRunningTypeB : Int = 5
-    var currnetRunningTypeC : Int = 2
-    var currentRunningTypeD : Int = 0
+    static var currentQueueA : Int = 9
+    static var currentQueueB : Int = 4
+    static var currentQueueC : Int = 2
+    static var currentQueueD : Int = 0
+    
+    static var currentRunningTypeA : Int = 11
+    static var currentRunningTypeB : Int = 5
+    static var currentRunningTypeC : Int = 2
+    static var currentRunningTypeD : Int = 0
+    static var currentQueueId : Int = 9
     
     static var defaultBranch : Branch = Branch(
         bra_id: 1,
@@ -215,4 +221,7 @@ struct MyVariables {
             que_cancel_time: NSDate())
     
     ]
+    
+    static var noShowQueueTypeC : [Queue] = []
+    static var noShowQueueTypeD : [Queue] = []
 }

@@ -66,6 +66,7 @@ class BookingQViewController: UIViewController {
         
         if (person != nil) {
             
+        
 //            CurrentRunningNoController().getCurrentRunningNoByBraId(branchId, uiView: self)
 //            BranchController().getBranchById(branchId, uiView: self)
 //            NSThread.sleepForTimeInterval(0.5)

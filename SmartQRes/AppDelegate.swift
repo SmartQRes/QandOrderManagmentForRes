@@ -20,93 +20,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         //handle Google Plus or Facebook login
-        return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation) || FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+//        return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation) || FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
+        return true
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         //newCode
-        var applicationId = ""
-        var applicationSecret = ""
-        var applicationRoute  = ""
-        
-        var hasValidConfiguration = true
-        var exception:NSException?
-        var errorMessage = ""
-        
-        //for debuging different authentication methods, this clears the backend oauth token, if a token is found then it's used
-        //clearKeychain()
-        
-        // Read the applicationId from the smartqlist.plist.
-        var configurationPath = NSBundle.mainBundle().pathForResource("smartqlist", ofType: "plist")
-        
-        if(configurationPath != nil){
-            if let configuration = NSDictionary(contentsOfFile: configurationPath!){
-                applicationId = configuration["applicationId"] as! String
-                print("applicationId " + applicationId)
-                if(applicationId == ""){
-                    hasValidConfiguration = false
-                    errorMessage = "Open the smartqlist.plist and set the applicationId to the BlueMix applicationId"
-                }
-                applicationRoute = configuration["applicationRoute"] as! String
-                if(applicationRoute == ""){
-                    hasValidConfiguration = false
-                    errorMessage = "Open the smartqlist.plist and set the applicationRoute to the BlueMix application's route"
-                }
-            } else {
-                hasValidConfiguration = false
-                errorMessage = "Problems parsing applicationId or applicationRoute from local file smartqlist.plist"
-            }
-        } else {
-            hasValidConfiguration = false
-            errorMessage = "Problems reading path for file smartqlist.plist"
-        }
-        
-        
-        if(hasValidConfiguration){
-            print("Intializing SDK")
-            IMFClient.sharedInstance().initializeWithBackendRoute(applicationRoute, backendGUID: applicationId)
-            /*Authentication is required to connect to backend services,
-            For this sample App register all 3 handler are register locally but only 1 will be use
-            depending how the client was register in AMS (Advance Mobile Access)
-            */
-            print("Setting facebook authentication handler")
-            IMFFacebookAuthenticationHandler.sharedInstance().registerWithDefaultDelegate()
-            print("Setting google authentication handler")
-            IMFGoogleAuthenticationHandler.sharedInstance().registerWithDefaultDelegate()
-            print("Setting custom authentication handler")
-            IMFClient.sharedInstance().registerAuthenticationDelegate(nil, forRealm: "SmartQAuth")
-            
-            //analytics
-            IMFAnalytics.sharedInstance().startRecordingApplicationLifecycleEvents()
-            /*
-            //setup push with interactive notifications
-            let acceptAction = UIMutableUserNotificationAction()
-            acceptAction.identifier = "ACCEPT_ACTION"
-            acceptAction.title = "Accept"
-            acceptAction.destructive = false
-            acceptAction.authenticationRequired = false
-            acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
-            
-            let declineAction = UIMutableUserNotificationAction()
-            declineAction.identifier = "DECLINE_ACTION"
-            declineAction.title = "Decline"
-            declineAction.destructive = true
-            declineAction.authenticationRequired = false
-            declineAction.activationMode = UIUserNotificationActivationMode.Background
-            
-            let pushCategory = UIMutableUserNotificationCategory()
-            pushCategory.identifier = "TODO_CATEGORY"
-            pushCategory.setActions([acceptAction, declineAction], forContext: UIUserNotificationActionContext.Default)
-            
-            let notificationTypes: UIUserNotificationType = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
-            let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: NSSet(array:[pushCategory]) as Set<NSObject>)
-            
-            application.registerUserNotificationSettings(notificationSettings)
-            application.registerForRemoteNotifications()
-            */
-        }
+//        var applicationId = ""
+//        var applicationSecret = ""
+//        var applicationRoute  = ""
+//        
+//        var hasValidConfiguration = true
+//        var exception:NSException?
+//        var errorMessage = ""
+//        
+//        //for debuging different authentication methods, this clears the backend oauth token, if a token is found then it's used
+//        //clearKeychain()
+//        
+//        // Read the applicationId from the smartqlist.plist.
+//        var configurationPath = NSBundle.mainBundle().pathForResource("smartqlist", ofType: "plist")
+//        
+//        if(configurationPath != nil){
+//            if let configuration = NSDictionary(contentsOfFile: configurationPath!){
+//                applicationId = configuration["applicationId"] as! String
+//                print("applicationId " + applicationId)
+//                if(applicationId == ""){
+//                    hasValidConfiguration = false
+//                    errorMessage = "Open the smartqlist.plist and set the applicationId to the BlueMix applicationId"
+//                }
+//                applicationRoute = configuration["applicationRoute"] as! String
+//                if(applicationRoute == ""){
+//                    hasValidConfiguration = false
+//                    errorMessage = "Open the smartqlist.plist and set the applicationRoute to the BlueMix application's route"
+//                }
+//            } else {
+//                hasValidConfiguration = false
+//                errorMessage = "Problems parsing applicationId or applicationRoute from local file smartqlist.plist"
+//            }
+//        } else {
+//            hasValidConfiguration = false
+//            errorMessage = "Problems reading path for file smartqlist.plist"
+//        }
+//        
+//        
+//        if(hasValidConfiguration){
+//            print("Intializing SDK")
+//            IMFClient.sharedInstance().initializeWithBackendRoute(applicationRoute, backendGUID: applicationId)
+//            /*Authentication is required to connect to backend services,
+//            For this sample App register all 3 handler are register locally but only 1 will be use
+//            depending how the client was register in AMS (Advance Mobile Access)
+//            */
+//            print("Setting facebook authentication handler")
+//            IMFFacebookAuthenticationHandler.sharedInstance().registerWithDefaultDelegate()
+//            print("Setting google authentication handler")
+//            IMFGoogleAuthenticationHandler.sharedInstance().registerWithDefaultDelegate()
+//            print("Setting custom authentication handler")
+//            IMFClient.sharedInstance().registerAuthenticationDelegate(nil, forRealm: "SmartQAuth")
+//            
+//            //analytics
+//            IMFAnalytics.sharedInstance().startRecordingApplicationLifecycleEvents()
+//            /*
+//            //setup push with interactive notifications
+//            let acceptAction = UIMutableUserNotificationAction()
+//            acceptAction.identifier = "ACCEPT_ACTION"
+//            acceptAction.title = "Accept"
+//            acceptAction.destructive = false
+//            acceptAction.authenticationRequired = false
+//            acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
+//            
+//            let declineAction = UIMutableUserNotificationAction()
+//            declineAction.identifier = "DECLINE_ACTION"
+//            declineAction.title = "Decline"
+//            declineAction.destructive = true
+//            declineAction.authenticationRequired = false
+//            declineAction.activationMode = UIUserNotificationActivationMode.Background
+//            
+//            let pushCategory = UIMutableUserNotificationCategory()
+//            pushCategory.identifier = "TODO_CATEGORY"
+//            pushCategory.setActions([acceptAction, declineAction], forContext: UIUserNotificationActionContext.Default)
+//            
+//            let notificationTypes: UIUserNotificationType = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
+//            let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: NSSet(array:[pushCategory]) as Set<NSObject>)
+//            
+//            application.registerUserNotificationSettings(notificationSettings)
+//            application.registerForRemoteNotifications()
+//            */
+//        }
         return true
     }
 

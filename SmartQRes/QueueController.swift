@@ -378,194 +378,331 @@ class QueueController {
         var noOfPerson: NSNumber, var childFlag: Bool, var wheelchairFlag: Bool,
         var branch: Branch, var crnObj: CurrentRunningNo, uiView: BookingQViewController){
             
-//            var toBeQueueNo =
+            var toBeQueueNo : Int = 0
+            var toBeQueueId : Int = 0
+            var q : Queue
+            var childFlagString : String
+            var wheelChairFlagString : String
             
-            
-            
-            
-            var queue = Queue()
-            
-            print("BRANCH ID: \(bra_id)")
-            print("NO. Of Person   : \(noOfPerson)")
-            print("Child Flag      : \(childFlag)")
-            print("Wheelchair Flag : \(wheelchairFlag)")
-            
-            print("A RUNNING Result \(crnObj.cur_ty_a)")
-            print("B RUNNING Result \(crnObj.cur_ty_b)")
-            print("C RUNNING Result \(crnObj.cur_ty_c)")
-            print("D RUNNING Result \(crnObj.cur_ty_d)")
-            
-            print("Branch Name :  \(branch.bra_name) --------- ")
-            
-            //Get Maximum ID
-            self.instance.pullItems()
-            
-            var query : CDTQuery
-            query = CDTCloudantQuery(dataType: "Queue")
-            datastore.performQuery(query, completionHandler: {(results, error) -> Void in
-                if((error) != nil){
-                    print("ERROR --> \(error) ")
-                    queue.que_id = 1
-                }
-                else{
-                    
-                    self.queueList = results as! [Queue]
-                    if(self.queueList.count == 0){
-                        queue.que_id = 1
-                    }else{
-                        var os = NSMutableOrderedSet()
-                        os.addObjectsFromArray(self.queueList)
-                        let sd = NSSortDescriptor(key: "que_id", ascending: true)
-                        os.sortUsingDescriptors([sd])
-                        self.queueList = os.array as! [Queue]
-                    
-                        var temp : Queue = Queue()
-                        temp = self.queueList[self.queueList.count-1]
-                        queue.que_id = temp.que_id.integerValue + 1
-                    }
-                    
-                }
-            })
-            NSThread.sleepForTimeInterval(0.5)
-            
-            var queueNo : NSNumber = 0
-            if (noOfPerson.integerValue >= branch.bra_ty_a_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_a_max.integerValue) {
-                
-                //A Type
-                queue.que_tb_type = Constants.TableType.A
-                
-                //Update current running no into table
-                queueNo = crnObj.cur_ty_a.integerValue + 1
-                crnObj.cur_ty_a = queueNo
-                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
-                
-            }else if(noOfPerson.integerValue >= branch.bra_ty_b_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_b_max.integerValue){
-                
-                //B Type
-                queue.que_tb_type = Constants.TableType.B
-                
-                //Update current running no into table
-                queueNo = crnObj.cur_ty_b.integerValue + 1
-                crnObj.cur_ty_b = queueNo
-                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
-                
-            }else if(noOfPerson.integerValue >= branch.bra_ty_c_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_c_max.integerValue){
-                
-                //C Type
-                queue.que_tb_type = Constants.TableType.C
-                
-                //Update current running no into table
-                queueNo = crnObj.cur_ty_c.integerValue + 1
-                crnObj.cur_ty_c = queueNo
-                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
-                
-            }else if(noOfPerson.integerValue >= branch.bra_ty_d_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_d_max.integerValue){
-                
-                //D Type
-                queue.que_tb_type = Constants.TableType.D
-                
-                //Update current running no into table
-                queueNo = crnObj.cur_ty_d.integerValue + 1
-                crnObj.cur_ty_d = queueNo
-                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
-                
-            }
-            
-            print("Get the queue no : \(queue.que_tb_type) \(queueNo)")
-            
-            //Set Queue Attribute
-            queue.que_type = Constants.QueueType.Front //Default performed by customer
-            queue.que_bra_id = branch.bra_id
-            queue.que_status = Constants.QueueStatus.Waiting
-            queue.que_no = queueNo
-            queue.que_no_person = noOfPerson
             if(childFlag){
-                queue.que_child_flag = Constants.Flag.YES
+                childFlagString = Constants.Flag.YES
             }else{
-                queue.que_child_flag = Constants.Flag.NO
+                childFlagString = Constants.Flag.NO
             }
             
             if(wheelchairFlag){
-                queue.que_wheel_flag = Constants.Flag.YES
+                wheelChairFlagString = Constants.Flag.YES
             }else{
-                queue.que_wheel_flag = Constants.Flag.NO
+                wheelChairFlagString = Constants.Flag.NO
             }
             
             
-            print("----- QUEUE ID: \(queue.que_id) ------ ")
             
-            //            queue.que_id = 20
-            queue.que_bra_name_display = branch.bra_name
-            queue.que_res_name_display = branch.bra_res_name
-            queue.que_current_flag = Constants.Flag.NO
-            queue.que_reserve_time = NSDate()
-            
-            datastore.save(queue, completionHandler: { (object, error) -> Void in
-                if(error != nil){
-                    print("Error on save queue \(error)")
+            if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_a_min.integerValue &&
+                noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_a_max.integerValue) {
+                    toBeQueueNo = MyVariables.currentRunningTypeA + 1
+                    toBeQueueId = MyVariables.currentQueueId + 1
+                    //Type A
+                    q = Queue(que_id: toBeQueueId,
+                        que_type: Constants.QueueType.Front,
+                        que_bra_id: 1,
+                        que_cus_id: 1,
+                        que_status: Constants.QueueStatus.Waiting,
+                        que_tb_type: Constants.TableType.A,
+                        que_no: toBeQueueNo,
+                        que_no_person: noOfPerson,
+                        que_child_flag: childFlagString,
+                        que_wheel_flag: wheelChairFlagString,
+                        que_confirm_code: "358149",
+                        que_current_flag: Constants.Flag.NO,
+                        que_call_q_time: NSDate(),
+                        que_complete_time: NSDate(),
+                        que_reserve_time: NSDate(),
+                        que_cancel_time: NSDate())
                     
-                } else {
-                    queue = object as! Queue
-                    print("Save Queue Successfully")
-                    
-                }
-            })
+                    MyVariables.waitingQueueTypeA.append(q)
+                    MyVariables.currentRunningTypeA = toBeQueueNo
+                    MyVariables.currentQueueId = toBeQueueId
             
-            self.instance.pushItems()
+            }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_b_min.integerValue &&
+                      noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_b_max.integerValue) {
+                    
+                    toBeQueueNo = MyVariables.currentRunningTypeB + 1
+                    toBeQueueId = MyVariables.currentQueueId + 1
+    
+                    //Type B
+                    q = Queue(que_id: toBeQueueId,
+                        que_type: Constants.QueueType.Front,
+                        que_bra_id: 1,
+                        que_cus_id: 1,
+                        que_status: Constants.QueueStatus.Waiting,
+                        que_tb_type: Constants.TableType.B,
+                        que_no: toBeQueueNo,
+                        que_no_person: noOfPerson,
+                        que_child_flag: childFlagString,
+                        que_wheel_flag: wheelChairFlagString,
+                        que_confirm_code: "358149",
+                        que_current_flag: Constants.Flag.NO,
+                        que_call_q_time: NSDate(),
+                        que_complete_time: NSDate(),
+                        que_reserve_time: NSDate(),
+                        que_cancel_time: NSDate())
+                        
+                    MyVariables.waitingQueueTypeB.append(q)
+                    MyVariables.currentRunningTypeB = toBeQueueNo
+                    MyVariables.currentQueueId = toBeQueueId
+                        
+             
+            }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_c_min.integerValue &&
+                      noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_c_max.integerValue) {
+                        
+                    toBeQueueNo = MyVariables.currentRunningTypeC + 1
+                    toBeQueueId = MyVariables.currentQueueId + 1
+                    
+                    //Type C
+                    q = Queue(que_id: toBeQueueId,
+                        que_type: Constants.QueueType.Front,
+                        que_bra_id: 1,
+                        que_cus_id: 1,
+                        que_status: Constants.QueueStatus.Waiting,
+                        que_tb_type: Constants.TableType.C,
+                        que_no: toBeQueueNo,
+                        que_no_person: noOfPerson,
+                        que_child_flag: childFlagString,
+                        que_wheel_flag: wheelChairFlagString,
+                        que_confirm_code: "358149",
+                        que_current_flag: Constants.Flag.NO,
+                        que_call_q_time: NSDate(),
+                        que_complete_time: NSDate(),
+                        que_reserve_time: NSDate(),
+                        que_cancel_time: NSDate())
+    
+                    MyVariables.waitingQueueTypeC.append(q)
+                    MyVariables.currentRunningTypeC = toBeQueueNo
+                    MyVariables.currentQueueId = toBeQueueId
+                        
+
+            }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_d_min.integerValue &&
+                      noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_d_max.integerValue) {
+                    
+                    toBeQueueNo = MyVariables.currentRunningTypeD + 1
+                    toBeQueueId = MyVariables.currentQueueId + 1
+    
+                    //Type D
+                    q = Queue(que_id: toBeQueueId,
+                        que_type: Constants.QueueType.Front,
+                        que_bra_id: 1,
+                        que_cus_id: 1,
+                        que_status: Constants.QueueStatus.Waiting,
+                        que_tb_type: Constants.TableType.D,
+                        que_no: toBeQueueNo,
+                        que_no_person: noOfPerson,
+                        que_child_flag: childFlagString,
+                        que_wheel_flag: wheelChairFlagString,
+                        que_confirm_code: "358149",
+                        que_current_flag: Constants.Flag.NO,
+                        que_call_q_time: NSDate(),
+                        que_complete_time: NSDate(),
+                        que_reserve_time: NSDate(),
+                        que_cancel_time: NSDate())
+                    
+                    MyVariables.waitingQueueTypeD.append(q)
+                    MyVariables.currentRunningTypeD = toBeQueueNo
+                    MyVariables.currentQueueId = toBeQueueId
+                        
+            }
             
             uiView.queue = queue
+            
+            
+//            var queue = Queue()
+//            
+//            print("BRANCH ID: \(bra_id)")
+//            print("NO. Of Person   : \(noOfPerson)")
+//            print("Child Flag      : \(childFlag)")
+//            print("Wheelchair Flag : \(wheelchairFlag)")
+//            
+//            print("A RUNNING Result \(crnObj.cur_ty_a)")
+//            print("B RUNNING Result \(crnObj.cur_ty_b)")
+//            print("C RUNNING Result \(crnObj.cur_ty_c)")
+//            print("D RUNNING Result \(crnObj.cur_ty_d)")
+//            
+//            print("Branch Name :  \(branch.bra_name) --------- ")
+//            
+//            //Get Maximum ID
+//            self.instance.pullItems()
+//            
+//            var query : CDTQuery
+//            query = CDTCloudantQuery(dataType: "Queue")
+//            datastore.performQuery(query, completionHandler: {(results, error) -> Void in
+//                if((error) != nil){
+//                    print("ERROR --> \(error) ")
+//                    queue.que_id = 1
+//                }
+//                else{
+//                    
+//                    self.queueList = results as! [Queue]
+//                    if(self.queueList.count == 0){
+//                        queue.que_id = 1
+//                    }else{
+//                        var os = NSMutableOrderedSet()
+//                        os.addObjectsFromArray(self.queueList)
+//                        let sd = NSSortDescriptor(key: "que_id", ascending: true)
+//                        os.sortUsingDescriptors([sd])
+//                        self.queueList = os.array as! [Queue]
+//                    
+//                        var temp : Queue = Queue()
+//                        temp = self.queueList[self.queueList.count-1]
+//                        queue.que_id = temp.que_id.integerValue + 1
+//                    }
+//                    
+//                }
+//            })
+//            NSThread.sleepForTimeInterval(0.5)
+//            
+//            var queueNo : NSNumber = 0
+//            if (noOfPerson.integerValue >= branch.bra_ty_a_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_a_max.integerValue) {
+//                
+//                //A Type
+//                queue.que_tb_type = Constants.TableType.A
+//                
+//                //Update current running no into table
+//                queueNo = crnObj.cur_ty_a.integerValue + 1
+//                crnObj.cur_ty_a = queueNo
+//                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
+//                
+//            }else if(noOfPerson.integerValue >= branch.bra_ty_b_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_b_max.integerValue){
+//                
+//                //B Type
+//                queue.que_tb_type = Constants.TableType.B
+//                
+//                //Update current running no into table
+//                queueNo = crnObj.cur_ty_b.integerValue + 1
+//                crnObj.cur_ty_b = queueNo
+//                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
+//                
+//            }else if(noOfPerson.integerValue >= branch.bra_ty_c_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_c_max.integerValue){
+//                
+//                //C Type
+//                queue.que_tb_type = Constants.TableType.C
+//                
+//                //Update current running no into table
+//                queueNo = crnObj.cur_ty_c.integerValue + 1
+//                crnObj.cur_ty_c = queueNo
+//                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
+//                
+//            }else if(noOfPerson.integerValue >= branch.bra_ty_d_min.integerValue && noOfPerson.integerValue <= branch.bra_ty_d_max.integerValue){
+//                
+//                //D Type
+//                queue.que_tb_type = Constants.TableType.D
+//                
+//                //Update current running no into table
+//                queueNo = crnObj.cur_ty_d.integerValue + 1
+//                crnObj.cur_ty_d = queueNo
+//                CurrentRunningNoController().updateCurrentRunningNo(crnObj)
+//                
+//            }
+//            
+//            print("Get the queue no : \(queue.que_tb_type) \(queueNo)")
+//            
+//            //Set Queue Attribute
+//            queue.que_type = Constants.QueueType.Front //Default performed by customer
+//            queue.que_bra_id = branch.bra_id
+//            queue.que_status = Constants.QueueStatus.Waiting
+//            queue.que_no = queueNo
+//            queue.que_no_person = noOfPerson
+//            if(childFlag){
+//                queue.que_child_flag = Constants.Flag.YES
+//            }else{
+//                queue.que_child_flag = Constants.Flag.NO
+//            }
+//            
+//            if(wheelchairFlag){
+//                queue.que_wheel_flag = Constants.Flag.YES
+//            }else{
+//                queue.que_wheel_flag = Constants.Flag.NO
+//            }
+//            
+//            
+//            print("----- QUEUE ID: \(queue.que_id) ------ ")
+//            
+//            //            queue.que_id = 20
+//            queue.que_bra_name_display = branch.bra_name
+//            queue.que_res_name_display = branch.bra_res_name
+//            queue.que_current_flag = Constants.Flag.NO
+//            queue.que_reserve_time = NSDate()
+//            
+//            datastore.save(queue, completionHandler: { (object, error) -> Void in
+//                if(error != nil){
+//                    print("Error on save queue \(error)")
+//                    
+//                } else {
+//                    queue = object as! Queue
+//                    print("Save Queue Successfully")
+//                    
+//                }
+//            })
+//            
+//            self.instance.pushItems()
+//            
+//            uiView.queue = queue
             
     }
     func getCurrentQueue(var bra_id: NSNumber, var tb_type : String, uiView: ConfirmBookingViewController) {
         print("QUEUE CONTROLLER [getCurrentQueue] tableType: \(tb_type)")
+        uiView.currentQA = MyVariables.currentQueueA
+        uiView.currentQB = MyVariables.currentQueueB
+        uiView.currentQC = MyVariables.currentQueueC
+        uiView.currentQD = MyVariables.currentQueueD
         
-        self.instance.pullItems()
         
-        var queue = Queue()
-        var query : CDTQuery
-        
-        self.queryPredicate = NSPredicate(format: "(que_bra_id = %@ AND que_tb_type = %@ AND que_current_flag = 'Y')", bra_id , tb_type)
-        query = CDTCloudantQuery(dataType: "Queue", withPredicate: self.queryPredicate)
-        self.datastore.performQuery(query, completionHandler: {(results, error) -> Void in
-            if((error) != nil){
-                print(error)
-                
-            }
-            else{
-                if(results.count != 1 ){
-                    print("----- Not Found Current Queue ----")
-                    if(tb_type == Constants.TableType.A){
-                        uiView.currentQA = 0
-                    }else if(tb_type == Constants.TableType.B){
-                        uiView.currentQB = 0
-                    }else if(tb_type == Constants.TableType.C){
-                        uiView.currentQC = 0
-                    }else if(tb_type == Constants.TableType.D){
-                        uiView.currentQD = 0
-                    }
-                    
-                }else{
-                    queue = results[0] as! Queue
-                    print("------ Found Queue \(queue.que_tb_type)\(queue.que_no) ----")
-                    if(tb_type == Constants.TableType.A){
-                        uiView.currentQA = queue.que_no
-                        
-                    }else if(tb_type == Constants.TableType.B){
-                        uiView.currentQB = queue.que_no
-                        
-                    }else if(tb_type == Constants.TableType.C){
-                        uiView.currentQC = queue.que_no
-                        
-                    }else if(tb_type == Constants.TableType.D){
-                        uiView.currentQD = queue.que_no
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        })
+//        self.instance.pullItems()
+//        
+//        var queue = Queue()
+//        var query : CDTQuery
+//        
+//        self.queryPredicate = NSPredicate(format: "(que_bra_id = %@ AND que_tb_type = %@ AND que_current_flag = 'Y')", bra_id , tb_type)
+//        query = CDTCloudantQuery(dataType: "Queue", withPredicate: self.queryPredicate)
+//        self.datastore.performQuery(query, completionHandler: {(results, error) -> Void in
+//            if((error) != nil){
+//                print(error)
+//                
+//            }
+//            else{
+//                if(results.count != 1 ){
+//                    print("----- Not Found Current Queue ----")
+//                    if(tb_type == Constants.TableType.A){
+//                        uiView.currentQA = 0
+//                    }else if(tb_type == Constants.TableType.B){
+//                        uiView.currentQB = 0
+//                    }else if(tb_type == Constants.TableType.C){
+//                        uiView.currentQC = 0
+//                    }else if(tb_type == Constants.TableType.D){
+//                        uiView.currentQD = 0
+//                    }
+//                    
+//                }else{
+//                    queue = results[0] as! Queue
+//                    print("------ Found Queue \(queue.que_tb_type)\(queue.que_no) ----")
+//                    if(tb_type == Constants.TableType.A){
+//                        uiView.currentQA = queue.que_no
+//                        
+//                    }else if(tb_type == Constants.TableType.B){
+//                        uiView.currentQB = queue.que_no
+//                        
+//                    }else if(tb_type == Constants.TableType.C){
+//                        uiView.currentQC = queue.que_no
+//                        
+//                    }else if(tb_type == Constants.TableType.D){
+//                        uiView.currentQD = queue.que_no
+//                        
+//                    }
+//                    
+//                }
+//                
+//            }
+//            
+//        })
         
     }
     func calculateRemainQAndWaitingTime(uiView: ConfirmBookingViewController) -> Void{

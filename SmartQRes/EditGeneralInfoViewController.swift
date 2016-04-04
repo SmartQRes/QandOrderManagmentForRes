@@ -50,6 +50,7 @@ class EditGeneralInfoViewController: UIViewController, UIPopoverPresentationCont
         txtServiceTime!.text = branchTime
         btnBranchStatus.titleLabel!.text =  branchStatus
         txtContactNo!.text = branchContactNo
+        
     }
 
     @IBAction func popoverMallsList(sender: AnyObject) {

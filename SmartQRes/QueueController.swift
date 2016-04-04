@@ -636,6 +636,7 @@ class QueueController {
                     MyVariables.waitingQueueTypeA.append(q)
                     MyVariables.currentRunningTypeA = toBeQueueNo
                     MyVariables.currentQueueId = toBeQueueId
+                    uiView.queue = q
             
             }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_b_min.integerValue &&
                       noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_b_max.integerValue) {
@@ -664,7 +665,7 @@ class QueueController {
                     MyVariables.waitingQueueTypeB.append(q)
                     MyVariables.currentRunningTypeB = toBeQueueNo
                     MyVariables.currentQueueId = toBeQueueId
-                        
+                    uiView.queue = q
              
             }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_c_min.integerValue &&
                       noOfPerson.integerValue <= MyVariables.defaultBranch.bra_ty_c_max.integerValue) {
@@ -693,6 +694,7 @@ class QueueController {
                     MyVariables.waitingQueueTypeC.append(q)
                     MyVariables.currentRunningTypeC = toBeQueueNo
                     MyVariables.currentQueueId = toBeQueueId
+                    uiView.queue = q
                         
 
             }else if (noOfPerson.integerValue >= MyVariables.defaultBranch.bra_ty_d_min.integerValue &&
@@ -722,10 +724,9 @@ class QueueController {
                     MyVariables.waitingQueueTypeD.append(q)
                     MyVariables.currentRunningTypeD = toBeQueueNo
                     MyVariables.currentQueueId = toBeQueueId
+                    uiView.queue = q
                         
             }
-            
-            uiView.queue = queue
             
             
 //            var queue = Queue()

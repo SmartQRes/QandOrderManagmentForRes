@@ -18,14 +18,96 @@ class QueueController {
     var filteredListQueue = [Queue]()
     let instance = SingletonClass.shared
     var datastore: CDTStore!
-    
+    /*
     init() {
         self.datastore = instance.connectionSmartQDB()
         self.datastore.mapper.setDataType("Queue", forClassName: NSStringFromClass(Queue.classForCoder()))
         self.datastore.createIndexWithName("QueueIndex", fields: ["que_id"], completionHandler: { (error:NSError!) -> Void in
         })
-    }
+    }*/
     func getCurrentQueueByType(bra_id : NSNumber, type : NSString, uiView : ManageQViewController){
+        // A
+        if type == "A" {
+        var findCurQueInWaitingAList = MyVariables.waitingQueueTypeA.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        var findCurQueInNoShowAList = MyVariables.noShowQueueTypeA.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        if findCurQueInWaitingAList.count == 0 {
+            if findCurQueInNoShowAList.count == 0 {
+                uiView.btnCurrentTypeA.titleLabel?.text =  "-"
+                uiView.btnCurrentTypeA.setTitle("-", forState: UIControlState.Normal)
+            }else{
+                uiView.curQueueTypeA = findCurQueInNoShowAList[0]
+                uiView.btnCurrentTypeA.titleLabel?.text = "A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeA.setTitle("A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        }else{
+            uiView.curQueueTypeA = findCurQueInWaitingAList[0]
+            uiView.btnCurrentTypeA.titleLabel?.text = "A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+            uiView.btnCurrentTypeA.setTitle("A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+        }
+        }
+        // B
+        if type == "B" {
+        var findCurQueInWaitingBList = MyVariables.waitingQueueTypeB.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        var findCurQueInNoShowBList = MyVariables.noShowQueueTypeB.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        if findCurQueInWaitingBList.count == 0 {
+            if findCurQueInNoShowBList.count == 0 {
+                uiView.btnCurrentTypeB.titleLabel?.text =  "-"
+                uiView.btnCurrentTypeB.setTitle("-", forState: UIControlState.Normal)
+            }else{
+                uiView.curQueueTypeB = findCurQueInNoShowBList[0]
+                uiView.btnCurrentTypeB.titleLabel?.text = "B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeB.setTitle("B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        }else{
+            uiView.curQueueTypeB = findCurQueInWaitingBList[0]
+            uiView.btnCurrentTypeB.titleLabel?.text = "B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+            uiView.btnCurrentTypeB.setTitle("B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+        }
+        }
+        if type == "C" {
+        // C
+        var findCurQueInWaitingCList = MyVariables.waitingQueueTypeC.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        var findCurQueInNoShowCList = MyVariables.noShowQueueTypeC.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        if findCurQueInWaitingCList.count == 0 {
+            if findCurQueInNoShowCList.count == 0 {
+                uiView.btnCurrentTypeC.titleLabel?.text =  "-"
+                uiView.btnCurrentTypeC.setTitle("C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }else{
+                uiView.curQueueTypeC = findCurQueInNoShowCList[0]
+                uiView.btnCurrentTypeC.titleLabel?.text = "C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeC.setTitle("C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        }else{
+            uiView.curQueueTypeC = findCurQueInWaitingCList[0]
+            uiView.btnCurrentTypeC.titleLabel?.text = "C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+            uiView.btnCurrentTypeC.setTitle("C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        }
+        
+    
+        // D
+        if type == "D" {
+        var findCurQueInWaitingDList = MyVariables.waitingQueueTypeD.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        var findCurQueInNoShowDList = MyVariables.noShowQueueTypeD.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+        if findCurQueInWaitingDList.count == 0 {
+            if findCurQueInNoShowDList.count == 0 {
+                uiView.btnCurrentTypeD.titleLabel?.text =  "-"
+                uiView.btnCurrentTypeD.setTitle("D", forState: UIControlState.Normal)
+            }else{
+                uiView.curQueueTypeD = findCurQueInNoShowDList[0]
+                uiView.btnCurrentTypeD.titleLabel?.text = "D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeD.setTitle("D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        }else{
+            uiView.curQueueTypeD = findCurQueInWaitingDList[0]
+            uiView.btnCurrentTypeD.titleLabel?.text = "D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+            uiView.btnCurrentTypeD.setTitle("D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+        }
+        }
+    
+        
+        
+        /*
         var query : CDTQuery
         self.instance.pullItems()
         self.datastore.createIndexWithName("CurrentQIndex", fields: ["que_bra_id","que_tb_type","que_no","que_current_flag"], completionHandler: { (error:NSError!) -> Void in })
@@ -71,11 +153,90 @@ class QueueController {
             }
             
         })
-
+*/
         
     }
     
     func getAllCurrentQueue(bra_id : NSNumber, uiView : ManageQViewController){
+        // A
+            var findCurQueInWaitingAList = MyVariables.waitingQueueTypeA.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            var findCurQueInNoShowAList = MyVariables.noShowQueueTypeA.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            if findCurQueInWaitingAList.count == 0 {
+                if findCurQueInNoShowAList.count == 0 {
+                    uiView.btnCurrentTypeA.titleLabel?.text =  "-"
+                    uiView.btnCurrentTypeA.setTitle("-", forState: UIControlState.Normal)
+                }else{
+                    uiView.curQueueTypeA = findCurQueInNoShowAList[0]
+                    uiView.btnCurrentTypeA.titleLabel?.text = "A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                    uiView.btnCurrentTypeA.setTitle("A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+                }
+            }else{
+                uiView.curQueueTypeA = findCurQueInWaitingAList[0]
+                uiView.btnCurrentTypeA.titleLabel?.text = "A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeA.setTitle("A\(uiView.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        
+        // B
+            var findCurQueInWaitingBList = MyVariables.waitingQueueTypeB.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            var findCurQueInNoShowBList = MyVariables.noShowQueueTypeB.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            if findCurQueInWaitingBList.count == 0 {
+                if findCurQueInNoShowBList.count == 0 {
+                    uiView.btnCurrentTypeB.titleLabel?.text =  "-"
+                    uiView.btnCurrentTypeB.setTitle("-", forState: UIControlState.Normal)
+                }else{
+                    uiView.curQueueTypeB = findCurQueInNoShowBList[0]
+                    uiView.btnCurrentTypeB.titleLabel?.text = "B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                    uiView.btnCurrentTypeB.setTitle("B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+                }
+            }else{
+                uiView.curQueueTypeB = findCurQueInWaitingBList[0]
+                uiView.btnCurrentTypeB.titleLabel?.text = "B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeB.setTitle("B\(uiView.curQueueTypeB.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        
+            // C
+            var findCurQueInWaitingCList = MyVariables.waitingQueueTypeC.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            var findCurQueInNoShowCList = MyVariables.noShowQueueTypeC.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            if findCurQueInWaitingCList.count == 0 {
+                if findCurQueInNoShowCList.count == 0 {
+                    print("C NO list")
+                    uiView.btnCurrentTypeC.titleLabel?.text =  "-"
+                    uiView.btnCurrentTypeC.setTitle("-", forState: UIControlState.Normal)
+                }else{
+                    print("C No Show")
+                    uiView.curQueueTypeC = findCurQueInNoShowCList[0]
+                    uiView.btnCurrentTypeC.titleLabel?.text = "C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                    uiView.btnCurrentTypeC.setTitle("C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+                }
+            }else{
+                print("C Waiting")
+                uiView.curQueueTypeC = findCurQueInWaitingCList[0]
+                uiView.btnCurrentTypeC.titleLabel?.text = "C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeC.setTitle("C\(uiView.curQueueTypeC.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        
+        
+        
+        // D
+            var findCurQueInWaitingDList = MyVariables.waitingQueueTypeD.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            var findCurQueInNoShowDList = MyVariables.noShowQueueTypeD.filter({($0 as Queue).que_current_flag == Constants.Flag.YES})
+            if findCurQueInWaitingDList.count == 0 {
+                if findCurQueInNoShowDList.count == 0 {
+                    print("DDDDDDDD")
+                    uiView.btnCurrentTypeD.titleLabel?.text =  "-"
+                    uiView.btnCurrentTypeD.setTitle("-", forState: UIControlState.Normal)
+                }else{
+                    uiView.curQueueTypeD = findCurQueInNoShowDList[0]
+                    uiView.btnCurrentTypeD.titleLabel?.text = "D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                    uiView.btnCurrentTypeD.setTitle("D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+                }
+            }else{
+                uiView.curQueueTypeD = findCurQueInWaitingDList[0]
+                uiView.btnCurrentTypeD.titleLabel?.text = "D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))"
+                uiView.btnCurrentTypeD.setTitle("D\(uiView.curQueueTypeD.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
+            }
+        
+        /*
         var query : CDTQuery
         //self.instance.pullItems()
         self.datastore.createIndexWithName("AllCurrentQIndex", fields: ["que_bra_id","que_no","que_current_flag"], completionHandler: { (error:NSError!) -> Void in })
@@ -115,12 +276,13 @@ class QueueController {
              }
             
         })
-        
+        */
         
     }
     
     func getWaitingQueueListByType(bra_id: NSNumber, type : NSString, uiView : ManageQViewController){
-        var query : CDTQuery
+        
+        /*var query : CDTQuery
         //self.instance.pullItems()
         self.datastore.createIndexWithName("WaitingQIndex", fields: ["que_bra_id","que_tb_type","que_status","que_current_flag"], completionHandler: { (error:NSError!) -> Void in })
         self.queryPredicate = NSPredicate(format: "(que_bra_id = %@ and que_tb_type = %@ and que_status = %@ and que_current_flag = 'N')", bra_id,type, Constants.QueueStatus.Waiting)
@@ -152,10 +314,31 @@ class QueueController {
                 }
             }
             
-        })
+        })*/
     }
     
-    func getAllWaitingQueueListByType(bra_id: NSNumber, uiView : ManageQViewController){
+    func getAllWaitingQueueList(bra_id: NSNumber, uiView : ManageQViewController){
+        if(uiView.labelTypeA.hidden == false){
+            uiView.listQueueTypeAWaiting = MyVariables.waitingQueueTypeA.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeAWaiting.reloadData()
+        }
+        //NSThread.sleepForTimeInterval(0.1)
+        if(uiView.labelTypeB.hidden == false){
+            uiView.listQueueTypeBWaiting = MyVariables.waitingQueueTypeB.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeBWaiting.reloadData()
+        }
+        //NSThread.sleepForTimeInterval(0.1)
+        if(uiView.labelTypeC.hidden == false){
+            uiView.listQueueTypeCWaiting = MyVariables.waitingQueueTypeC.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeCWaiting.reloadData()
+        }
+        //NSThread.sleepForTimeInterval(0.1)
+        if(uiView.labelTypeD.hidden == false){
+            uiView.listQueueTypeDWaiting = MyVariables.waitingQueueTypeD.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeDWaiting.reloadData()
+        }
+
+        /*
         var query : CDTQuery
         //self.instance.pullItems()
         self.datastore.createIndexWithName("WaitingQIndex", fields: ["que_bra_id","que_status","que_current_flag"], completionHandler: { (error:NSError!) -> Void in })
@@ -211,11 +394,26 @@ class QueueController {
                 //self.getAllNoShowQueueListByType(bra_id, uiView: uiView)
             }
             
-        })
+        })*/
     }
 
     
     func getNoShowQueueListByType(bra_id: NSNumber, type : NSString, uiView : ManageQViewController){
+        if(type == Constants.TableType.A){
+            uiView.listQueueTypeANoShow = MyVariables.noShowQueueTypeA.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeANoShow.reloadData()
+        }else if(type == Constants.TableType.B){
+           uiView.listQueueTypeBNoShow = MyVariables.noShowQueueTypeB.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeBNoShow.reloadData()
+        }else if(type == Constants.TableType.C){
+            uiView.listQueueTypeCNoShow = MyVariables.noShowQueueTypeC.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeCNoShow.reloadData()
+        }else if(type == Constants.TableType.D){
+            uiView.listQueueTypeDNoShow = MyVariables.noShowQueueTypeD.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeDNoShow.reloadData()
+            
+        }
+        /*
         var query : CDTQuery
         //self.instance.pullItems()
         self.datastore.createIndexWithName("NoShowQIndex", fields: ["que_bra_id","que_tb_type","que_status"], completionHandler: { (error:NSError!) -> Void in })
@@ -247,9 +445,24 @@ class QueueController {
                    
                 }
             }
-        })
+        })*/
     }
-    func getAllNoShowQueueListByType(bra_id: NSNumber, uiView : ManageQViewController){
+    func getAllNoShowQueueList(bra_id: NSNumber, uiView : ManageQViewController){
+        if(uiView.labelTypeA.hidden == false){
+            uiView.listQueueTypeANoShow = MyVariables.noShowQueueTypeA.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeANoShow.reloadData()
+        }else if(uiView.labelTypeB.hidden == false){
+            uiView.listQueueTypeBNoShow = MyVariables.noShowQueueTypeB.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeBNoShow.reloadData()
+        }else if(uiView.labelTypeC.hidden == false){
+            uiView.listQueueTypeCNoShow = MyVariables.noShowQueueTypeC.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeCNoShow.reloadData()
+        }else if(uiView.labelTypeD.hidden == false){
+            uiView.listQueueTypeDNoShow = MyVariables.noShowQueueTypeD.filter({$0.que_current_flag == Constants.Flag.NO})
+            uiView.tableViewTypeDNoShow.reloadData()
+            
+        }
+        /*
         var query : CDTQuery
        // self.instance.pullItems()
         self.datastore.createIndexWithName("NoShowQIndex", fields: ["que_bra_id","que_status"], completionHandler: { (error:NSError!) -> Void in })
@@ -304,7 +517,7 @@ class QueueController {
                 }
                 
             }
-        })
+        })*/
     }
 
     /*
@@ -369,9 +582,9 @@ class QueueController {
         self.getCurrentQueueByType(branchId, type:Constants.TableType.D, uiView:uiView)*/
         self.getAllCurrentQueue(branchId, uiView: uiView)
         NSThread.sleepForTimeInterval(0.2)
-        self.getAllWaitingQueueListByType(branchId, uiView: uiView)
+        self.getAllWaitingQueueList(branchId, uiView: uiView)
          NSThread.sleepForTimeInterval(0.2)
-        self.getAllNoShowQueueListByType(branchId, uiView: uiView)
+        self.getAllNoShowQueueList(branchId, uiView: uiView)
     }
     
     func createQueue(var bra_id : NSNumber,
@@ -793,6 +1006,17 @@ class QueueController {
     }
 
     func updateCurrentQItem(item: Queue, uiView : ManageQViewController) {
+        if(item.que_tb_type == Constants.TableType.A){
+            uiView.curQueueTypeA = item as! Queue
+        }else if(item.que_tb_type == Constants.TableType.B){
+            uiView.curQueueTypeB = item as! Queue
+        }else if(item.que_tb_type == Constants.TableType.C){
+            uiView.curQueueTypeC = item as! Queue
+        }else if(item.que_tb_type == Constants.TableType.D){
+            uiView.curQueueTypeD = item as! Queue
+        }
+
+        /*
         self.datastore.save(item, completionHandler: { (object, error) -> Void in
             if(error != nil){
                 print("updateItem failed with error \(error)")
@@ -810,7 +1034,7 @@ class QueueController {
                 print("Update queue complete")
                 self.instance.pushItems()
             }
-        })
+        })*/
     }
     
 

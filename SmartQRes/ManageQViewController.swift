@@ -14,15 +14,15 @@ var audioPlayer = AVAudioPlayer()
 
 class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var listQueueTypeAWaiting : [Queue] = []
-    var listQueueTypeBWaiting : [Queue] = []
-    var listQueueTypeCWaiting : [Queue] = []
-    var listQueueTypeDWaiting : [Queue] = []
+    var listQueueTypeAWaiting : [Queue] = MyVariables.waitingQueueTypeA
+    var listQueueTypeBWaiting : [Queue] = MyVariables.waitingQueueTypeB
+    var listQueueTypeCWaiting : [Queue] = MyVariables.waitingQueueTypeC
+    var listQueueTypeDWaiting : [Queue] = MyVariables.waitingQueueTypeD
     
-    var listQueueTypeANoShow : [Queue] = []
-    var listQueueTypeBNoShow : [Queue] = []
-    var listQueueTypeCNoShow : [Queue] = []
-    var listQueueTypeDNoShow : [Queue] = []
+    var listQueueTypeANoShow : [Queue] = MyVariables.noShowQueueTypeA
+    var listQueueTypeBNoShow : [Queue] = MyVariables.noShowQueueTypeB
+    var listQueueTypeCNoShow : [Queue] = MyVariables.noShowQueueTypeC
+    var listQueueTypeDNoShow : [Queue] = MyVariables.noShowQueueTypeD
     
     var curQueueTypeA:Queue = Queue()
     var curQueueTypeB:Queue = Queue()
@@ -73,7 +73,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
     var branchId:NSNumber = 0
     var branch = Branch()
     
-    let instance = SingletonClass.shared
+   // let instance = SingletonClass.shared
     
     var status = 1
     var queueNo = ""
@@ -81,10 +81,10 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Retreive Branch ID
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+/*        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let branchId:NSNumber = prefs.integerForKey("BRANCHID") as NSNumber
         print("User branchid \(branchId)")
-        self.branchId = branchId
+        self.branchId = branchId*/
         //QueueController().instance.pullItems()
         // Do any additional setup after loading the view.
         print("View Did Load")
@@ -115,8 +115,16 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
         self.btnCallNextQB.layer.cornerRadius = 5
         self.btnCallNextQC.layer.cornerRadius = 5
         self.btnCallNextQD.layer.cornerRadius = 5
-        //self.hideTrigger()
         
+        QueueController().getAllWaitingQueueList(branchId, uiView: self)
+        QueueController().getAllNoShowQueueList(branchId, uiView: self)
+/*
+        QueueController().getNoShowQueueListByType(branchId, type: Constants.TableType.A, uiView: self)
+        QueueController().getNoShowQueueListByType(branchId, type: Constants.TableType.B, uiView: self)
+        QueueController().getNoShowQueueListByType(branchId, type: Constants.TableType.C, uiView: self)
+        QueueController().getNoShowQueueListByType(branchId, type: Constants.TableType.D, uiView: self)
+        */
+        QueueController().getAllCurrentQueue(branchId, uiView: self)
         
     }
     
@@ -328,7 +336,6 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             }
             let deleteButton = UIAlertAction(title: "Delete", style: .Default){
                 (action) -> Void in
-                self.updateToCancel(currentList[index])
                 if(currentList[index].que_tb_type == Constants.TableType.A){
                     self.listQueueTypeANoShow.removeAtIndex(index)
                     self.tableViewTypeANoShow.reloadData()
@@ -361,7 +368,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                 // Update Current Q to Flag N
                 if(self.curQueueTypeA.que_status != 0){
                     self.curQueueTypeA.que_current_flag = Constants.Flag.NO
-                    QueueController().updateItem(self.curQueueTypeA)
+                    //QueueController().updateItem(self.curQueueTypeA)
                     //print("Current : Queue No \(self.curQueueTypeA.que_no), Queue Status \(self.curQueueTypeA.que_status), Queue Flag \(self.curQueueTypeA.que_current_flag)")
                 }
                 // Update Next Q to Flag Y
@@ -383,7 +390,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             }else{
                 self.popupUpdateCurrentQStatus(self.curQueueTypeA,btnCurrent : btnCurrentTypeA, tableNoShow : tableViewTypeANoShow, isCallFromNextQ : Constants.Flag.YES)
             }
-            CustomerController().sendNotiByType(Constants.TableType.A, uiView: self)
+            //CustomerController().sendNotiByType(Constants.TableType.A, uiView: self)
             
         }
     }
@@ -395,7 +402,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             if(self.curQueueTypeB.que_status != Constants.QueueStatus.Waiting){
                 if(self.curQueueTypeB.que_status != 0){
                     self.curQueueTypeB.que_current_flag = Constants.Flag.NO
-                    QueueController().updateItem(self.curQueueTypeB)
+                  //  QueueController().updateItem(self.curQueueTypeB)
                    // print("Cuurent : Queue No \(self.curQueueTypeB.que_no), Queue Status \(self.curQueueTypeB.que_status), Queue Flag \(self.curQueueTypeB.que_current_flag)")
                 }
                 self.listQueueTypeBWaiting[0].que_current_flag = Constants.Flag.YES
@@ -425,7 +432,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             if(self.curQueueTypeC.que_status != Constants.QueueStatus.Waiting){
                 if(self.curQueueTypeC.que_status != 0){
                     self.curQueueTypeC.que_current_flag = Constants.Flag.NO
-                    QueueController().updateItem(self.curQueueTypeC)
+                  //  QueueController().updateItem(self.curQueueTypeC)
                     //print("Cuurent : Queue No \(self.curQueueTypeC.que_no), Queue Status \(self.curQueueTypeC.que_status), Queue Flag \(self.curQueueTypeC.que_current_flag)")
                 }
                 self.listQueueTypeCWaiting[0].que_current_flag = Constants.Flag.YES
@@ -455,7 +462,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             if(self.curQueueTypeD.que_status != Constants.QueueStatus.Waiting){
                 if(self.curQueueTypeD.que_status != 0){
                     self.curQueueTypeD.que_current_flag = Constants.Flag.NO
-                    QueueController().updateItem(self.curQueueTypeD)
+               //     QueueController().updateItem(self.curQueueTypeD)
                     //print("Cuurent : Queue No \(self.curQueueTypeD.que_no), Queue Status \(self.curQueueTypeD.que_status), Queue Flag \(self.curQueueTypeD.que_current_flag)")
                 }
                 self.listQueueTypeDWaiting[0].que_current_flag = Constants.Flag.YES
@@ -644,7 +651,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
         if(fromStatus == Constants.QueueStatus.Waiting){
             QueueController().updateCurrentQItem(currentQ, uiView : self)
         }else if(fromStatus == Constants.QueueStatus.NoShow){
-            QueueController().updateItem(currentQ)
+          //  QueueController().updateItem(currentQ)
         }
        // performSegueWithIdentifier("confirmOrderSegue", sender: nil)
         
@@ -653,14 +660,15 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
     func updateToCancel(currentQ : Queue){
         currentQ.que_status = Constants.QueueStatus.Cancelled
         currentQ.que_cancel_time = NSDate()
-        QueueController().updateItem(currentQ)
+       // listQueueTypeBNoShow.removeAtIndex(<#T##index: Int##Int#>)
+        //QueueController().updateItem(currentQ)
     }
 
     @IBAction func refreshViewMethod(sender: AnyObject) {
         //QueueController().instance.pullItems()
         //sleep(2)
-        BranchController().getBranchById(self.branchId, uiView:self)
-        QueueController().loadAllQueueInfo(self.branchId, uiView: self)
+       // BranchController().getBranchById(self.branchId, uiView:self)
+       // QueueController().loadAllQueueInfo(self.branchId, uiView: self)
     
        /* print("=================================================================")
         print("1 Count Q Type A Waiting : \(self.listQueueTypeAWaiting.count)")

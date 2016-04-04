@@ -46,9 +46,11 @@ class EditGeneralInfoViewController: UIViewController, UIPopoverPresentationCont
         btnSave.layer.cornerRadius = 5
         txtBranchName!.text = name
         txtBranchLocation!.text = branchLocation
-        btnMall.titleLabel!.text =  shoppingMall
+       // btnMall.titleLabel!.text =  shoppingMall
+        btnMall.setTitle(shoppingMall, forState: UIControlState.Normal)
         txtServiceTime!.text = branchTime
-        btnBranchStatus.titleLabel!.text =  branchStatus
+       // btnBranchStatus.titleLabel!.text =  branchStatus
+        btnBranchStatus.setTitle(branchStatus, forState: UIControlState.Normal)
         txtContactNo!.text = branchContactNo
         
     }
@@ -87,12 +89,14 @@ class EditGeneralInfoViewController: UIViewController, UIPopoverPresentationCont
     
     @IBAction func selectMall(segue: UIStoryboardSegue){
         print("Select Mall \(selectMall)")
-        btnMall.titleLabel!.text =  selectMall
+       // btnMall.titleLabel!.text =  selectMall
+        btnMall.setTitle(selectMall, forState: UIControlState.Normal)
     }
     
     @IBAction func selectBranchStatus(segue: UIStoryboardSegue){
         print("Select Branch \(selectStatus)")
-        btnBranchStatus.titleLabel!.text = selectStatus
+       // btnBranchStatus.titleLabel!.text = selectStatus
+        btnBranchStatus.setTitle(selectStatus, forState: UIControlState.Normal)
     }
     @IBAction func saveGeneralInfo() {
         //editBranch = self.instance.branchController.branch

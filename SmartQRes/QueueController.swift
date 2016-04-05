@@ -396,15 +396,18 @@ class QueueController {
     
     func getNoShowQueueListByType(bra_id: NSNumber, type : NSString, uiView : ManageQViewController){
         if(type == Constants.TableType.A){
-            uiView.listQueueTypeANoShow = MyVariables.noShowQueueTypeA.filter({ $0.que_status == Constants.QueueStatus.NoShow})
+            uiView.listQueueTypeANoShow = MyVariables.noShowQueueTypeA.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeANoShow.reloadData()
-        }else if(type == Constants.TableType.B){
+        }
+        if(type == Constants.TableType.B){
            uiView.listQueueTypeBNoShow = MyVariables.noShowQueueTypeB.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeBNoShow.reloadData()
-        }else if(type == Constants.TableType.C){
+        }
+        if(type == Constants.TableType.C){
             uiView.listQueueTypeCNoShow = MyVariables.noShowQueueTypeC.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeCNoShow.reloadData()
-        }else if(type == Constants.TableType.D){
+        }
+        if(type == Constants.TableType.D){
             uiView.listQueueTypeDNoShow = MyVariables.noShowQueueTypeD.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeDNoShow.reloadData()
             
@@ -444,16 +447,22 @@ class QueueController {
         })*/
     }
     func getAllNoShowQueueList(bra_id: NSNumber, uiView : ManageQViewController){
+        
         if(uiView.labelTypeA.hidden == false){
+            
             uiView.listQueueTypeANoShow = MyVariables.noShowQueueTypeA.filter({ $0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeANoShow.reloadData()
-        }else if(uiView.labelTypeB.hidden == false){
+        }
+        if(uiView.labelTypeB.hidden == false){
+            
             uiView.listQueueTypeBNoShow = MyVariables.noShowQueueTypeB.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeBNoShow.reloadData()
-        }else if(uiView.labelTypeC.hidden == false){
+        }
+        if(uiView.labelTypeC.hidden == false){
             uiView.listQueueTypeCNoShow = MyVariables.noShowQueueTypeC.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeCNoShow.reloadData()
-        }else if(uiView.labelTypeD.hidden == false){
+        }
+        if(uiView.labelTypeD.hidden == false){
             uiView.listQueueTypeDNoShow = MyVariables.noShowQueueTypeD.filter({$0.que_status == Constants.QueueStatus.NoShow})
             uiView.tableViewTypeDNoShow.reloadData()
             

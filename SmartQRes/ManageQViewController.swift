@@ -326,12 +326,18 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                     self.tableViewTypeANoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.B){
                     self.listQueueTypeBNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeB.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeB[queueIndex!].que_status = Constants.QueueStatus.Completed
                     self.tableViewTypeBNoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.C){
                     self.listQueueTypeCNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeC.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeC[queueIndex!].que_status = Constants.QueueStatus.Completed
                     self.tableViewTypeCNoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.D){
                     self.listQueueTypeDNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeD.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeD[queueIndex!].que_status = Constants.QueueStatus.Completed
                     self.tableViewTypeDNoShow.reloadData()
                 }
                 //print("Update Selected Q Complete : Status is Completed and complete time is updated !! ")
@@ -341,16 +347,22 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                 if(currentList[index].que_tb_type == Constants.TableType.A){
                     self.listQueueTypeANoShow.removeAtIndex(index)
                     let queueIndex = MyVariables.noShowQueueTypeA.indexOf(currentList[index])
-                    MyVariables.noShowQueueTypeA[queueIndex!].que_status = Constants.QueueStatus.Completed
+                    MyVariables.noShowQueueTypeA[queueIndex!].que_status = Constants.QueueStatus.Cancelled
                     self.tableViewTypeANoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.B){
                     self.listQueueTypeBNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeB.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeB[queueIndex!].que_status = Constants.QueueStatus.Cancelled
                     self.tableViewTypeBNoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.C){
                     self.listQueueTypeCNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeC.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeC[queueIndex!].que_status = Constants.QueueStatus.Cancelled
                     self.tableViewTypeCNoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.D){
                     self.listQueueTypeDNoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeD.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeD[queueIndex!].que_status = Constants.QueueStatus.Cancelled
                     self.tableViewTypeDNoShow.reloadData()
                 }
                 //print("Update Selected Q Complete : Status is Cancelled and cancel time is updated !! ")

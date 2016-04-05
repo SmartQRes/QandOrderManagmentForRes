@@ -87,7 +87,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
         self.branchId = branchId*/
         //QueueController().instance.pullItems()
         // Do any additional setup after loading the view.
-        print("View Did Load")
+        print("View Did Load1")
         // Set table datasource and delegate
         tableViewTypeAWaiting.dataSource = self
         tableViewTypeAWaiting.delegate = self
@@ -115,7 +115,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
         self.btnCallNextQB.layer.cornerRadius = 5
         self.btnCallNextQC.layer.cornerRadius = 5
         self.btnCallNextQD.layer.cornerRadius = 5
-        
+
         QueueController().getAllWaitingQueueList(branchId, uiView: self)
         QueueController().getAllNoShowQueueList(branchId, uiView: self)
 /*
@@ -321,6 +321,8 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                 self.performSegueWithIdentifier("confirmOrderSegue", sender: msg)
                 if(currentList[index].que_tb_type == Constants.TableType.A){
                     self.listQueueTypeANoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeA.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeA[queueIndex!].que_status = Constants.QueueStatus.Completed
                     self.tableViewTypeANoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.B){
                     self.listQueueTypeBNoShow.removeAtIndex(index)
@@ -338,6 +340,8 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                 (action) -> Void in
                 if(currentList[index].que_tb_type == Constants.TableType.A){
                     self.listQueueTypeANoShow.removeAtIndex(index)
+                    let queueIndex = MyVariables.noShowQueueTypeA.indexOf(currentList[index])
+                    MyVariables.noShowQueueTypeA[queueIndex!].que_status = Constants.QueueStatus.Completed
                     self.tableViewTypeANoShow.reloadData()
                 }else if(currentList[index].que_tb_type == Constants.TableType.B){
                     self.listQueueTypeBNoShow.removeAtIndex(index)
@@ -376,7 +380,11 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
                 self.listQueueTypeAWaiting[0].que_call_q_time = NSDate()
                 QueueController().updateCurrentQItem(self.listQueueTypeAWaiting[0], uiView : self)
                 //print("New Current : Queue No \(self.curQueueTypeA.que_no), Queue Status \(self.curQueueTypeA.que_status), Queue Flag \(self.curQueueTypeA.que_current_flag)")
+                var queueIndex = MyVariables.waitingQueueTypeA.indexOf(self.listQueueTypeAWaiting[0])
+
                 self.listQueueTypeAWaiting.removeAtIndex(0)
+                
+               // MyVariables.waitingQueueTypeA =  self.listQueueTypeAWaiting
                 self.tableViewTypeAWaiting.reloadData()
                 self.btnCurrentTypeA.setTitle("\(self.curQueueTypeA.que_tb_type)\(self.curQueueTypeA.que_no.integerValue.format(Constants.DecimalFormat.Queue))", forState: UIControlState.Normal)
                 //print("listQueueTypeAWaiting = \(self.listQueueTypeAWaiting.count)")
@@ -628,18 +636,22 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             self.curQueueTypeA.que_status = Constants.QueueStatus.NoShow
             QueueController().updateCurrentQItem(self.curQueueTypeA,uiView : self)
             self.listQueueTypeANoShow.append(currentQ)
+            MyVariables.noShowQueueTypeA.append(currentQ)
         }else if(currentQ.que_tb_type == Constants.TableType.B){
             self.curQueueTypeB.que_status = Constants.QueueStatus.NoShow
             QueueController().updateCurrentQItem(self.curQueueTypeB, uiView : self)
             self.listQueueTypeBNoShow.append(currentQ)
+            MyVariables.noShowQueueTypeB.append(currentQ)
         }else if(currentQ.que_tb_type == Constants.TableType.C){
             self.curQueueTypeC.que_status = Constants.QueueStatus.NoShow
             QueueController().updateCurrentQItem(self.curQueueTypeC, uiView : self)
             self.listQueueTypeCNoShow.append(currentQ)
+            MyVariables.noShowQueueTypeC.append(currentQ)
         }else if(currentQ.que_tb_type == Constants.TableType.D){
             self.curQueueTypeD.que_status = Constants.QueueStatus.NoShow
             QueueController().updateCurrentQItem(self.curQueueTypeD, uiView : self)
             self.listQueueTypeDNoShow.append(currentQ)
+            MyVariables.noShowQueueTypeD.append(currentQ)
         }
     }
     

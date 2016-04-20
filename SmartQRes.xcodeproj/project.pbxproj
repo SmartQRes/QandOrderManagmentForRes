@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A88A4231CAFAE940062578D /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88A4221CAFAE940062578D /* GlobalVariable.swift */; settings = {ASSET_TAGS = (); }; };
+		3A88A4231CAFAE940062578D /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88A4221CAFAE940062578D /* GlobalVariable.swift */; };
 		666690D21A8E60DE003A15F2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666690D11A8E60DE003A15F2 /* WelcomeViewController.swift */; };
 		666690D41A8E6308003A15F2 /* UserStaffController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666690D31A8E6308003A15F2 /* UserStaffController.swift */; };
 		666690D61A8E66E8003A15F2 /* smartqlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 666690D51A8E66E8003A15F2 /* smartqlist.plist */; };
@@ -16,10 +16,9 @@
 		9D0FAD02E9CF826194CD4126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 105AB39828681B7066B81931 /* libPods.a */; };
 		A102130F1C0567270085FE13 /* OrderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102130E1C0567270085FE13 /* OrderListViewController.swift */; };
 		A10213111C056F980085FE13 /* OrderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10213101C056F980085FE13 /* OrderListTableViewController.swift */; };
-		A10213121C05ADAB0085FE13 /* Sukishi.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE3B1411AB301CB0038C564 /* Sukishi.png */; };
-		A10213131C05ADAB0085FE13 /* Sizzler.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5F691E1AB2E6320002F5C9 /* Sizzler.png */; };
 		A1A60A9A1C4DFECF00157FD1 /* ufonts.com_century-gothic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1A60A981C4DFECF00157FD1 /* ufonts.com_century-gothic-bold.ttf */; };
-		A1A60A9B1C4DFECF00157FD1 /* ufonts.com_century-gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1A60A991C4DFECF00157FD1 /* ufonts.com_century-gothic.ttf */; };
+		A1D0DD7F1CC724EC00404E9B /* ufonts.com_century-gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1A60A991C4DFECF00157FD1 /* ufonts.com_century-gothic.ttf */; };
+		A1D0DDA51CC73F7000404E9B /* Sizzler.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D0DDA41CC73F7000404E9B /* Sizzler.png */; };
 		A1F76A331C50BA2500861977 /* icon_splashpage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F76A321C50BA2500861977 /* icon_splashpage.png */; };
 		A1F76A351C50E03500861977 /* Logo_QandOrder.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F76A341C50E03500861977 /* Logo_QandOrder.png */; };
 		A1F76A371C513AA600861977 /* Logo_QandOrderSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = A1F76A361C513AA600861977 /* Logo_QandOrderSplash.png */; };
@@ -75,9 +74,6 @@
 		FF5537701AB1B4BE00CDCA0E /* B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FF5537621AB1B4BE00CDCA0E /* B.m4a */; };
 		FF5537711AB1B4BE00CDCA0E /* C.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FF5537631AB1B4BE00CDCA0E /* C.m4a */; };
 		FF5537721AB1B4BE00CDCA0E /* D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FF5537641AB1B4BE00CDCA0E /* D.m4a */; };
-		FF5F691B1AB2DDE10002F5C9 /* CoCo ICHIBANYA.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5F69191AB2DDE10002F5C9 /* CoCo ICHIBANYA.png */; };
-		FF5F69201AB2E6320002F5C9 /* Fuji.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5F691C1AB2E6320002F5C9 /* Fuji.png */; };
-		FF5F69211AB2E6320002F5C9 /* MK.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5F691D1AB2E6320002F5C9 /* MK.png */; };
 		FF83D0331AAC827C002E5E02 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = FF83D0311AAC827C002E5E02 /* Icon-76.png */; };
 		FF83D0341AAC827C002E5E02 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF83D0321AAC827C002E5E02 /* Icon-76@2x.png */; };
 		FFAF2AB61AAC3D4F00B7F00A /* CommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAF2AB51AAC3D4F00B7F00A /* CommonConstants.swift */; };
@@ -104,8 +100,6 @@
 		FFD714321A5D1C7B00A3FA74 /* ManageBranchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD714311A5D1C7B00A3FA74 /* ManageBranchTableViewController.swift */; };
 		FFD714351A5D1CC000A3FA74 /* ViewBranchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD714341A5D1CC000A3FA74 /* ViewBranchViewController.swift */; };
 		FFD714371A5D1CD200A3FA74 /* EditBranchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD714361A5D1CD200A3FA74 /* EditBranchViewController.swift */; };
-		FFE3B1431AB301CB0038C564 /* OISHI.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE3B1401AB301CB0038C564 /* OISHI.png */; };
-		FFE3B1451AB301CB0038C564 /* Yum Zaap.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE3B1421AB301CB0038C564 /* Yum Zaap.png */; };
 		FFE3B1471AB30A610038C564 /* end.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFE3B1461AB30A610038C564 /* end.m4a */; };
 		FFF3ABE11A5E963700C983FA /* child.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF3ABDA1A5E963700C983FA /* child.png */; };
 		FFF3ABE21A5E963700C983FA /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF3ABDB1A5E963700C983FA /* man.png */; };
@@ -138,6 +132,7 @@
 		A10213101C056F980085FE13 /* OrderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListTableViewController.swift; sourceTree = "<group>"; };
 		A1A60A981C4DFECF00157FD1 /* ufonts.com_century-gothic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_century-gothic-bold.ttf"; sourceTree = "<group>"; };
 		A1A60A991C4DFECF00157FD1 /* ufonts.com_century-gothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ufonts.com_century-gothic.ttf"; sourceTree = "<group>"; };
+		A1D0DDA41CC73F7000404E9B /* Sizzler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sizzler.png; sourceTree = SOURCE_ROOT; };
 		A1F76A321C50BA2500861977 /* icon_splashpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_splashpage.png; sourceTree = SOURCE_ROOT; };
 		A1F76A341C50E03500861977 /* Logo_QandOrder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_QandOrder.png; sourceTree = SOURCE_ROOT; };
 		A1F76A361C513AA600861977 /* Logo_QandOrderSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_QandOrderSplash.png; sourceTree = SOURCE_ROOT; };
@@ -197,10 +192,6 @@
 		FF5537621AB1B4BE00CDCA0E /* B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = B.m4a; sourceTree = "<group>"; };
 		FF5537631AB1B4BE00CDCA0E /* C.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = C.m4a; sourceTree = "<group>"; };
 		FF5537641AB1B4BE00CDCA0E /* D.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = D.m4a; sourceTree = "<group>"; };
-		FF5F69191AB2DDE10002F5C9 /* CoCo ICHIBANYA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoCo ICHIBANYA.png"; sourceTree = SOURCE_ROOT; };
-		FF5F691C1AB2E6320002F5C9 /* Fuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fuji.png; sourceTree = SOURCE_ROOT; };
-		FF5F691D1AB2E6320002F5C9 /* MK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MK.png; sourceTree = SOURCE_ROOT; };
-		FF5F691E1AB2E6320002F5C9 /* Sizzler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sizzler.png; sourceTree = SOURCE_ROOT; };
 		FF7668271A868FA0004DFDC9 /* SmartQRes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartQRes-Bridging-Header.h"; sourceTree = "<group>"; };
 		FF83D0311AAC827C002E5E02 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		FF83D0321AAC827C002E5E02 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
@@ -228,9 +219,6 @@
 		FFD714311A5D1C7B00A3FA74 /* ManageBranchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageBranchTableViewController.swift; sourceTree = "<group>"; };
 		FFD714341A5D1CC000A3FA74 /* ViewBranchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBranchViewController.swift; sourceTree = "<group>"; };
 		FFD714361A5D1CD200A3FA74 /* EditBranchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBranchViewController.swift; sourceTree = "<group>"; };
-		FFE3B1401AB301CB0038C564 /* OISHI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OISHI.png; sourceTree = SOURCE_ROOT; };
-		FFE3B1411AB301CB0038C564 /* Sukishi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sukishi.png; sourceTree = SOURCE_ROOT; };
-		FFE3B1421AB301CB0038C564 /* Yum Zaap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yum Zaap.png"; sourceTree = SOURCE_ROOT; };
 		FFE3B1461AB30A610038C564 /* end.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = end.m4a; sourceTree = "<group>"; };
 		FFF3ABDA1A5E963700C983FA /* child.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child.png; sourceTree = "<group>"; };
 		FFF3ABDB1A5E963700C983FA /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
@@ -449,13 +437,7 @@
 		FF5F69171AB2DDC60002F5C9 /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				FFE3B1401AB301CB0038C564 /* OISHI.png */,
-				FFE3B1411AB301CB0038C564 /* Sukishi.png */,
-				FFE3B1421AB301CB0038C564 /* Yum Zaap.png */,
-				FF5F691C1AB2E6320002F5C9 /* Fuji.png */,
-				FF5F691D1AB2E6320002F5C9 /* MK.png */,
-				FF5F691E1AB2E6320002F5C9 /* Sizzler.png */,
-				FF5F69191AB2DDE10002F5C9 /* CoCo ICHIBANYA.png */,
+				A1D0DDA41CC73F7000404E9B /* Sizzler.png */,
 			);
 			name = Restaurant;
 			sourceTree = "<group>";
@@ -637,21 +619,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10213121C05ADAB0085FE13 /* Sukishi.png in Resources */,
-				A10213131C05ADAB0085FE13 /* Sizzler.png in Resources */,
-				A1A60A9B1C4DFECF00157FD1 /* ufonts.com_century-gothic.ttf in Resources */,
+				A1D0DD7F1CC724EC00404E9B /* ufonts.com_century-gothic.ttf in Resources */,
 				A1A60A9A1C4DFECF00157FD1 /* ufonts.com_century-gothic-bold.ttf in Resources */,
 				FF5537721AB1B4BE00CDCA0E /* D.m4a in Resources */,
 				FF55376F1AB1B4BE00CDCA0E /* A.m4a in Resources */,
 				FFF3ABE11A5E963700C983FA /* child.png in Resources */,
 				FF83D0331AAC827C002E5E02 /* Icon-76.png in Resources */,
 				FFF3ABE31A5E963700C983FA /* wheelchair.png in Resources */,
-				FF5F691B1AB2DDE10002F5C9 /* CoCo ICHIBANYA.png in Resources */,
 				FFE3B1471AB30A610038C564 /* end.m4a in Resources */,
 				FF5537681AB1B4BE00CDCA0E /* 3.m4a in Resources */,
 				FF5537701AB1B4BE00CDCA0E /* B.m4a in Resources */,
 				FF5537551AB1867C00CDCA0E /* beep-01a.wav in Resources */,
-				FF5F69211AB2E6320002F5C9 /* MK.png in Resources */,
 				FF55376B1AB1B4BE00CDCA0E /* 6.m4a in Resources */,
 				FFF3ABE51A5E963700C983FA /* SmartQ_logo.jpg in Resources */,
 				FF489A4E1A62D5F3003F3C38 /* SmartQ_logo_OrangeBG.png in Resources */,
@@ -660,11 +638,10 @@
 				FF5537691AB1B4BE00CDCA0E /* 4.m4a in Resources */,
 				FF83D0341AAC827C002E5E02 /* Icon-76@2x.png in Resources */,
 				666690D61A8E66E8003A15F2 /* smartqlist.plist in Resources */,
-				FF5F69201AB2E6320002F5C9 /* Fuji.png in Resources */,
 				FF55376D1AB1B4BE00CDCA0E /* 8.m4a in Resources */,
+				A1D0DDA51CC73F7000404E9B /* Sizzler.png in Resources */,
 				FF5537651AB1B4BE00CDCA0E /* 0.m4a in Resources */,
 				A1F76A331C50BA2500861977 /* icon_splashpage.png in Resources */,
-				FFE3B1431AB301CB0038C564 /* OISHI.png in Resources */,
 				A1F76A351C50E03500861977 /* Logo_QandOrder.png in Resources */,
 				FF5537671AB1B4BE00CDCA0E /* 2.m4a in Resources */,
 				FF55376C1AB1B4BE00CDCA0E /* 7.m4a in Resources */,
@@ -681,7 +658,6 @@
 				FF489A481A5F9806003F3C38 /* Podfile.lock in Resources */,
 				A1F76A371C513AA600861977 /* Logo_QandOrderSplash.png in Resources */,
 				FF489A471A5F9806003F3C38 /* Podfile in Resources */,
-				FFE3B1451AB301CB0038C564 /* Yum Zaap.png in Resources */,
 				FF120D121A552B3B00F5E8A3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

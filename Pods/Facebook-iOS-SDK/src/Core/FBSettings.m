@@ -78,7 +78,8 @@ static BOOL g_enableLegacyGraphAPI = NO;
 
 + (void)load {
     // when the app becomes active by any mean,  kick off the initialization.
-    __block __weak id initializeObserver;
+  /*  __block __weak id initializeObserver;
+    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     initializeObserver = [center addObserverForName:UIApplicationDidFinishLaunchingNotification
                                              object:nil
@@ -87,7 +88,7 @@ static BOOL g_enableLegacyGraphAPI = NO;
                                              [self FBSDKInitializeWithLaunchData:note.userInfo];
                                              // de-register the observer after initialization is done.
                                              [center removeObserver:initializeObserver];
-                                         }];
+                                         }];*/
 }
 
 // Initialize SDK settings.

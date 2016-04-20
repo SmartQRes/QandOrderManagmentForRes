@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="eK9-J2-4Hc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="eK9-J2-4Hc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1084,10 +1084,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8T-JY-vQv">
-                                <rect key="frame" x="128" y="236" width="447" height="238"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94p-b8-DV3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Siam Center" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94p-b8-DV3">
                                 <rect key="frame" x="0.0" y="507" width="703" height="41"/>
                                 <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="40"/>
                                 <color key="textColor" red="0.06547996415" green="0.31266421290000002" blue="0.41191563339999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1095,6 +1092,9 @@
                                 <color key="shadowColor" red="1" green="0.93646231820000003" blue="0.93000592780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="2" height="-1"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Sizzler-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q8T-JY-vQv">
+                                <rect key="frame" x="102" y="240" width="499" height="265"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
@@ -3428,6 +3428,7 @@
     </scenes>
     <resources>
         <image name="Logo_QandOrder.png" width="1811" height="1256"/>
+        <image name="Sizzler-Logo.png" width="400" height="250"/>
         <image name="child.png" width="256" height="256"/>
         <image name="man.png" width="252" height="592"/>
         <image name="wheelchair.png" width="2000" height="2154"/>

@@ -441,7 +441,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             }else{
                 self.popupUpdateCurrentQStatus(self.curQueueTypeB,btnCurrent : btnCurrentTypeB, tableNoShow : tableViewTypeBNoShow, isCallFromNextQ : Constants.Flag.YES)
             }
-            CustomerController().sendNotiByType(Constants.TableType.B, uiView: self)
+            //CustomerController().sendNotiByType(Constants.TableType.B, uiView: self)
         }
     }
     
@@ -472,7 +472,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             }else{
                 self.popupUpdateCurrentQStatus(self.curQueueTypeC,btnCurrent : btnCurrentTypeC, tableNoShow : tableViewTypeCNoShow, isCallFromNextQ : Constants.Flag.YES)
             }
-            CustomerController().sendNotiByType(Constants.TableType.C, uiView: self)
+            //CustomerController().sendNotiByType(Constants.TableType.C, uiView: self)
         }
     }
 
@@ -502,7 +502,7 @@ class ManageQViewController: MainDetailViewController, UITableViewDelegate, UITa
             }else{
                 self.popupUpdateCurrentQStatus(self.curQueueTypeD,btnCurrent : btnCurrentTypeD, tableNoShow : tableViewTypeDNoShow, isCallFromNextQ : Constants.Flag.YES)
             }
-            CustomerController().sendNotiByType(Constants.TableType.D, uiView: self)
+            //CustomerController().sendNotiByType(Constants.TableType.D, uiView: self)
         }
     }
     
